@@ -30,20 +30,20 @@
       }));
     scene.add( earth );
 
-    earth.position.x = -0.99
-    earth.position.y = -0.11
-    earth.position.z = 0.00
+    earth.position.x = -0.99 * 10
+    earth.position.y = -0.11 * 10
+    earth.position.z = 0.00 * 10
 
-    var mars = new THREE.Mesh( 
-      new THREE.SphereGeometry(.2,15,15),
+    var mercury = new THREE.Mesh( 
+      new THREE.SphereGeometry(.1,15,15),
       new THREE.MeshBasicMaterial( { 
         color: 0xff2222 
       }));
-    scene.add( mars );
+    scene.add( mercury );
 
-    earth.position.x = -0.99
-    earth.position.y = -0.11
-    earth.position.z = 0.00
+    mercury.position.x = -0.22 * 10
+    mercury.position.y = -0.40 * 10 
+    mercury.position.z = -0.02 * 10
 
     function render() {
         requestAnimationFrame(render);
