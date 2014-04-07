@@ -1,5 +1,14 @@
 source 'https://rubygems.org'
 
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+end
+
+gem 'therubyracer', platforms: :ruby
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
