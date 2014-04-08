@@ -5,7 +5,7 @@ set :application, 'solar_system'
 set :repo_url, 'git@github.com:ElizabethU/Solar_system.git'
 set :use_sudo, false
 
-set :deploy_to, 'var/www/solar_system'
+set :deploy_to, '/var/www/solar_system'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
