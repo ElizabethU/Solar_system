@@ -7,6 +7,8 @@ group :development do
   gem 'capistrano-rails'
 end
 
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 gem 'therubyracer', platforms: :ruby
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
