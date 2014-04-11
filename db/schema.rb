@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406065337) do
+ActiveRecord::Schema.define(version: 20140411231000) do
 
   create_table "bodies", force: true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140406065337) do
     t.float    "z"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "current"
   end
 
 end
