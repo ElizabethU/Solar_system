@@ -4,6 +4,7 @@
 </head>
 <body>
   <script src="https://rawgithub.com/mrdoob/three.js/master/build/three.js"></script>
+  <script src='threex.domevents.js'></script>
   <script>
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -44,6 +45,13 @@
     mercury.position.x = -0.22 * 10
     mercury.position.y = -0.40 * 10 
     mercury.position.z = -0.02 * 10
+
+    // ThreeX click event library
+    // var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
+
+    // domEvents.addEventListener(earth, 'click', function(event){
+    //     console.log('you clicked on the mesh')
+    // }, false)
 
     function render() {
         requestAnimationFrame(render);
