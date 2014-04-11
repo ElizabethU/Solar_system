@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -25,9 +25,10 @@ $(document).ready(function(){
       }));
     scene.add( earth );
 
-    earth.position.x = -0.99 * 10
-    earth.position.y = -0.11 * 10
-    earth.position.z = 0.00 * 10
+    earth.position.x = -0.99 * 10;
+    earth.position.y = -0.11 * 10;
+    earth.position.z = 0.00 * 10;
+    earth._name = "Earth";
 
     var mercury = new THREE.Mesh( 
       new THREE.SphereGeometry(.1,15,15),
@@ -42,10 +43,22 @@ $(document).ready(function(){
 
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
+    planets.forEach( function( planet ){
 
-    domEvents.addEventListener(earth, 'click', function(event){
-        console.log('you clicked on Earth')
-    }, false)
+    // var mercury = new THREE.Mesh( 
+    //   new THREE.SphereGeometry(.1,15,15),
+    //   new THREE.MeshBasicMaterial( { 
+    //     color: 0xff2222 
+    //   }));
+    // scene.add( mercury );
+
+      domEvents.addEventListener(earth, 'click', function(event){
+        console.log( planet.name );
+        $( "#earth_info").modal();
+      }, false);
+
+    });
+  
 
     function render() {
         requestAnimationFrame(render);
