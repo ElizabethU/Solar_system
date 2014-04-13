@@ -3,7 +3,7 @@
     <script>
     var planets = [];
 
-    <% Planets.each do |planet| %>
+    <% Bodies.each do |planet| %>
       var p = {
         name: <%= planet.name %>
 
@@ -12,8 +12,8 @@
     <% end %>
   </script>
   <h4>What's Happening in Space?</h4>
-  <% for each planet %>
-<div id="planet.name + _info" class="modal">
-  <p>This is earth! You are here!</p>
-</div>
-<% end %>
+  <% Bodies.each do |body| %>
+    <div id="#{body.name} + '_info'" class="modal"> -->
+    <p>This is earth! You are here!</p>
+    </div>
+  <% end %>
