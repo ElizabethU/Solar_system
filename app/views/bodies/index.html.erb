@@ -4,16 +4,18 @@
 var planets = [];
 
 <% @bodies.each do |planet| %>
+  console.log( "Sanity check 1")
   var p = {
-    name: <%= planet.name %>
+    name: "<%= planet.name.to_s %>"
 
   };
   planets.push( p );
+  console.log( "Sanity check 2")
 <% end %>
 </script>
 <h4>What's Happening in Space?</h4>
 <% @bodies.each do |body| %>
-  <div id="#{body.name} + '_info'" class="modal"> -->
-  <p>This is #{body.name}!</p>
+  <div id="<%=body.name%>_info" class="modal">
+  <p>This is <%= body.name %>!</p>
   </div>
 <% end %>
