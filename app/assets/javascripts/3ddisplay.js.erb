@@ -46,7 +46,7 @@ $(document).ready(function(){
 
       domEvents.addEventListener(eval(planet.name), 'click', function(event){
         console.log( planet.name );
-        $( "#sol_info").modal();
+        $( "#sol_info" ).modal(); // # + eval(planet.name) + _info does not
       }, false);
 
     });
