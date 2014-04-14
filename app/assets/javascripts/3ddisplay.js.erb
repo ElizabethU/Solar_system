@@ -11,19 +11,19 @@ $(document).ready(function(){
     camera.position.y = 6;
     camera.rotation.x = -.7
 
-    var sol = new THREE.Mesh( 
-      new THREE.SphereGeometry(1,25,25),
-      new THREE.MeshBasicMaterial( { 
-        color: 0xffcc00 
-      }));
-    scene.add( sol );
+    // var sol = new THREE.Mesh( 
+    //   new THREE.SphereGeometry(1,25,25),
+    //   new THREE.MeshBasicMaterial( { 
+    //     color: 0xffcc00 
+    //   }));
+    // scene.add( sol );
 
-    var earth = new THREE.Mesh( 
-      new THREE.SphereGeometry(.3,15,15),
-      new THREE.MeshBasicMaterial( { 
-        color: 0x0077ff 
-      }));
-    scene.add( earth );
+    // var earth = new THREE.Mesh( 
+    //   new THREE.SphereGeometry(.3,15,15),
+    //   new THREE.MeshBasicMaterial( { 
+    //     color: 0x0077ff 
+    //   }));
+    // scene.add( earth );
 
     // earth.position.x = -0.99 * 10;
     // earth.position.y = -0.11 * 10;
@@ -34,15 +34,17 @@ $(document).ready(function(){
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
     planets.forEach( function( planet ){
 
-      // window[planet.name] = new THREE.Mesh( 
-      //   new THREE.SphereGeometry(planet.diameter,15,15),
-      //   new THREE.MeshBasicMaterial( { 
-      //     color: 0xffffff// + planet.color
-      //   }));
-      // scene.add( window[planet.name] );
+      window[planet.name] = new THREE.Mesh( 
+        new THREE.SphereGeometry(planet.diameter,15,15),
+        new THREE.MeshBasicMaterial( { 
+          color: parseInt('0x' + planet.color)
+        }));
+      scene.add( window[planet.name] );
       eval(planet.name).position.x = planet.x * 10
       eval(planet.name).position.y = planet.y * 10
       eval(planet.name).position.z = planet.z * 10
+
+      console.log(eval(planet.name))
 
       domEvents.addEventListener(eval(planet.name), 'click', function(event){
         console.log( planet.name );
@@ -50,6 +52,8 @@ $(document).ready(function(){
       }, false);
 
     });
+
+    console.log( scene )
 
     function render() {
         requestAnimationFrame(render);
@@ -60,4 +64,16 @@ $(document).ready(function(){
 
     render();
 
+  $( document ).keydown(function(e) {
+    console.log(e.keyCode)
+    if (e.keyCode === 38) {
+      alert( "Up!" );
+    } else if (e.keyCode === 40) {
+      alert( "Down!" );
+    } else if (e.keyCode === 37) {
+      alert( "Left!" );
+    } else if (e.keyCode === 39) {
+      alert( "Right!" );
+    }; 
+  });
 });
