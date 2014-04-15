@@ -43,13 +43,17 @@ $(document).ready(function(){
 
   $( document ).keydown(function(e) {
     if (e.keyCode === 38) {
-      alert( "Up!" );
+      //alert( "Up!" );
+      camera.position.y += .5
     } else if (e.keyCode === 40) {
-      alert( "Down!" );
+      //alert( "Down!" );
+      camera.position.y -= .5
     } else if (e.keyCode === 37) {
-      alert( "Left!" );
+      //alert( "Left!" );
+      camera.position.x -= .5
     } else if (e.keyCode === 39) {
-      alert( "Right!" );
+      //alert( "Right!" );
+      camera.position.x += .5
     }; 
   });
 });
