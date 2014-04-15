@@ -41,19 +41,25 @@ $(document).ready(function(){
 
     render();
 
+var center = new THREE.Vector3( 0, 0, 0 );
+
   $( document ).keydown(function(e) {
     if (e.keyCode === 38) {
       //alert( "Up!" );
       camera.position.y += .5
+      camera.lookAt( center )
     } else if (e.keyCode === 40) {
       //alert( "Down!" );
       camera.position.y -= .5
+      camera.lookAt( center )
     } else if (e.keyCode === 37) {
       //alert( "Left!" );
       camera.position.x -= .5
+      camera.lookAt( center )
     } else if (e.keyCode === 39) {
       //alert( "Right!" );
       camera.position.x += .5
+      camera.lookAt( center )
     }; 
   });
 });
