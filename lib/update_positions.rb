@@ -9,7 +9,7 @@ class Updater
 
   def update
     @bodies.each do |body|
-      if body.name = 'sol' || body.current == false next
+      next if body.name = 'sol' || body.current == false
       this_planet_hash = HTTParty.get("http://ec2-54-187-83-106.us-west-2.compute.amazonaws.com/bodies/#{body}")
       if this_planet_hash["body"]["years"][@year][@day]
         today = this_planet_hash["body"]["years"][@year][@day]

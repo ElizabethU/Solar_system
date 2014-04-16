@@ -4,21 +4,23 @@
 var planets = [];
 
 <% @bodies.each do |planet| %>
-  var p = {
-    name: "<%= planet.name.to_s %>",
-    diameter: "<%= planet.diameter %>",
-    color: "<%= planet.color.to_s %>",
-    x: "<%= planet.x %>",
-    y: "<%= planet.y %>",
-    z: "<%= planet.z %>"
-  };
-  planets.push( p );
+  <% if planet.current %>
+    var p = {
+      name: "<%= planet.name.gsub(/-/, '_').tr('(),','').to_s %>",
+      diameter: "<%= planet.diameter %>",
+      color: "<%= planet.color.to_s %>",
+      x: "<%= planet.x %>",
+      y: "<%= planet.y %>",
+      z: "<%= planet.z %>"
+    };
+    planets.push( p );
+  <% end %>
 <% end %>
 
 </script>
 <h4>What's Happening in Space?</h4>
 <% @bodies.each do |body| %>
-  <div id="<%=body.name%>_info" class="modal">
+  <div id="<%=body.name.gsub(/-/, '_').tr('(),','')%>_info" class="modal">
   <p>This is <%= body.name.capitalize %>!</p>
   </div>
 <% end %>
