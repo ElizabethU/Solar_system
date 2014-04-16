@@ -7,6 +7,7 @@ group :development do
   gem 'capistrano-rails'
 end
 
+gem 'httparty'
 gem 'jquery-ui-rails'
 gem 'jquery-modal-rails'
 gem 'therubyracer', platforms: :ruby
