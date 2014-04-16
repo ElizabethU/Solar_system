@@ -7,9 +7,11 @@ $(document).ready(function(){
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
+    var center = new THREE.Vector3( 0, 0, 0 );
+
     camera.position.z = 15;
     camera.position.y = 6;
-    camera.rotation.x = -.7
+    camera.lookAt( center )
 
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
@@ -41,25 +43,37 @@ $(document).ready(function(){
 
     render();
 
-var center = new THREE.Vector3( 0, 0, 0 );
+var speed = .2
 
   $( document ).keydown(function(e) {
+    if (e.keyCode < 37 || e.keyCode > 40) return true
     if (e.keyCode === 38) {
       //alert( "Up!" );
-      camera.position.y += .5
+      var radius = Math.sqrt(Math.pow(camera.position.x, 2) + Math.pow(camera.position.y, 2) + Math.pow(camera.position.z, 2))
+      var angleUp = Math.asin(camera.position.y / radius)
+      camera.position.y = radius * Math.sin(angleUp + speed)
+      b = radius * Math.cos(Math.asin( camera.position.y / radius))
+      camera.position.x = b * Math.sin( Math.atan(camera.position.x / camera.position.z ))
+      camera.position.z = b * Math.cos( Math.atan(camera.position.x / camera.position.z ))
       camera.lookAt( center )
     } else if (e.keyCode === 40) {
       //alert( "Down!" );
-      camera.position.y -= .5
+      var radius = Math.sqrt(Math.pow(camera.position.x, 2) + Math.pow(camera.position.y, 2) + Math.pow(camera.position.z, 2))
+      var angleUp = Math.asin(camera.position.y / radius)
+      camera.position.y = radius * Math.sin(angleUp - speed)
+      b = radius * Math.cos(Math.asin( camera.position.y / radius))
+      camera.position.x = b * Math.sin( Math.atan(camera.position.x / camera.position.z ))
+      camera.position.z = b * Math.cos( Math.atan(camera.position.x / camera.position.z ))
       camera.lookAt( center )
     } else if (e.keyCode === 37) {
       //alert( "Left!" );
-      camera.position.x -= .5
+      camera.position.x -= speed
       camera.lookAt( center )
     } else if (e.keyCode === 39) {
       //alert( "Right!" );
-      camera.position.x += .5
+      camera.position.x += speed
       camera.lookAt( center )
     }; 
+    return false
   });
 });
