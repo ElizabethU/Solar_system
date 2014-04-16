@@ -47,10 +47,10 @@ var speed = .2
 
   $( document ).keydown(function(e) {
     if (e.keyCode < 37 || e.keyCode > 40) return true
+    var radius = Math.sqrt(Math.pow(camera.position.x, 2) + Math.pow(camera.position.y, 2) + Math.pow(camera.position.z, 2))
+    var angleUp = Math.asin(camera.position.y / radius)
     if (e.keyCode === 38) {
       //alert( "Up!" );
-      var radius = Math.sqrt(Math.pow(camera.position.x, 2) + Math.pow(camera.position.y, 2) + Math.pow(camera.position.z, 2))
-      var angleUp = Math.asin(camera.position.y / radius)
       camera.position.y = radius * Math.sin(angleUp + speed)
       b = radius * Math.cos(Math.asin( camera.position.y / radius))
       camera.position.x = b * Math.sin( Math.atan(camera.position.x / camera.position.z ))
@@ -58,8 +58,6 @@ var speed = .2
       camera.lookAt( center )
     } else if (e.keyCode === 40) {
       //alert( "Down!" );
-      var radius = Math.sqrt(Math.pow(camera.position.x, 2) + Math.pow(camera.position.y, 2) + Math.pow(camera.position.z, 2))
-      var angleUp = Math.asin(camera.position.y / radius)
       camera.position.y = radius * Math.sin(angleUp - speed)
       b = radius * Math.cos(Math.asin( camera.position.y / radius))
       camera.position.x = b * Math.sin( Math.atan(camera.position.x / camera.position.z ))
