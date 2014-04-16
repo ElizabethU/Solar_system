@@ -11,7 +11,7 @@ class Updater
     @bodies.each do |body|
       next if body.name == 'sol' || body.current == false
       this_planet_hash = HTTParty.get("http://ec2-54-187-83-106.us-west-2.compute.amazonaws.com/bodies/#{body.name}").parsed_response
-      if this_planet_hash["body"]["years"][@year][@day]
+      if this_planet_hash["body"]["years"][@year] && this_planet_hash["body"]["years"][@year][@day]
         puts "Hey, I found the day in the hash!"
         today = this_planet_hash["body"]["years"][@year][@day]
         body.x = today["x"]
