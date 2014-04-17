@@ -11,18 +11,15 @@ class Updater
     @bodies.each do |body|
       next if body.name == 'sol' || body.current == false
 
-      api_response = HTTParty.get("http://ec2-54-187-83-106.us-west-2.compute.amazonaws.com/bodies/#{body.name}/year/#{@year}")
+      api_response = HTTParty.get("http://ec2-54-187-83-106.us-west-2.compute.amazonaws.com/bodies/#{body.name}/year/#{@year}").parsed_response
 
-      if api_response.status != 200
+      if api_response[@year] == nil
         #no data for this year
         body.update(current: false) and next
-      else
-        this_planet_hash = api_response.parsed_response
       end
       
-      if this_planet_hash[@day]
-        puts "Hey, I found the day in the hash!"
-        today = this_planet_hash[@day]
+      if api_response[@year][@day]
+        today = api_response[@year][@day]
         body.x = today["x"]
         body.y = today["y"]
         body.z = today["z"]
@@ -31,7 +28,6 @@ class Updater
       end
       
       body.save
-      puts "I saved a thing!"
     end
   end
 end
