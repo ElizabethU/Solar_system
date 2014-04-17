@@ -9,8 +9,6 @@ $(document).ready(function(){
 
     var center = new THREE.Vector3( 0, 0, 0 );
 
-    camera.position.z = 15;
-    camera.position.y = 6;
     camera.lookAt( center )
 
     // ThreeX click event library
@@ -42,43 +40,34 @@ $(document).ready(function(){
     render();
 
 var speed = .1
+var theta1 = 0
+var theta2 = 0
 
   $( document ).keydown(function(e) {
     if (e.keyCode < 37 || e.keyCode > 40) return true
-    var radius = Math.sqrt(Math.pow(camera.position.x, 2) + Math.pow(camera.position.y, 2) + Math.pow(camera.position.z, 2))
-    var angleUp = Math.asin(camera.position.y / radius)
-    var angleSide = Math.atan(camera.position.x / camera.position.z)
+    var radius = 17
+
     if (e.keyCode === 38) {
       //alert( "Up!" );
-      camera.position.y = radius * Math.sin(angleUp + speed)
-      b = radius * Math.cos(Math.asin( camera.position.y / radius))
-      camera.position.x = b * Math.sin( Math.atan(camera.position.x / camera.position.z ))
-      camera.position.z = b * Math.cos( Math.atan(camera.position.x / camera.position.z ))
-      camera.lookAt( center )
-      console.log(camera.position)
+      theta1 += speed
     } else if (e.keyCode === 40) {
       //alert( "Down!" );
-      camera.position.y = radius * Math.sin(angleUp - speed)
-      b = radius * Math.cos(Math.asin( camera.position.y / radius))
-      camera.position.x = b * Math.sin( Math.atan(camera.position.x / camera.position.z ))
-      camera.position.z = b * Math.cos( Math.atan(camera.position.x / camera.position.z ))
-      camera.lookAt( center )
-      console.log(camera.position)
+      theta1 -= speed
     } else if (e.keyCode === 37) {
       //alert( "Left!" );
-      camera.position.x = camera.position.z * Math.tan(angleSide - speed)
-      b = radius * Math.cos(Math.abs(Math.asin( camera.position.y / radius)))
-      camera.position.z = Math.sqrt(Math.abs(Math.pow(b, 2) - Math.pow(camera.position.x, 2)))
-      camera.lookAt( center )
-      console.log(camera.position)
+      theta2 -= speed
     } else if (e.keyCode === 39) {
       //alert( "Right!" );
-      camera.position.x = camera.position.z * Math.tan(angleSide + speed)
-      b = radius * Math.cos(Math.abs(Math.asin( camera.position.y / radius)))
-      camera.position.z = Math.sqrt(Math.abs(Math.pow(b, 2) - Math.pow(camera.position.x, 2)))
-      camera.lookAt( center )
-      console.log(camera.position)
+      theta2 += speed
     }; 
+
+    //b = radius * Math.cos(Math.asin( camera.position.y / radius))
+    camera.position.x = radius * Math.sin( theta1 ) * Math.cos( theta2 )
+    camera.position.z = radius * Math.sin( theta1 ) * Math.sin( theta2 )
+    camera.position.y = radius * Math.cos( theta1 ) // z in mathland, y in d3
+    camera.lookAt( center )
+    console.log(camera.position)
+
     return false
   });
 });
