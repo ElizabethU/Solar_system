@@ -11,6 +11,13 @@ $(document).ready(function(){
 
     camera.lookAt( center )
 
+var tralfamador = new THREE.Mesh(
+        new THREE.SphereGeometry(1.5,15,15),
+        new THREE.MeshBasicMaterial( {
+                color: 0xffffff
+        }));
+scene.add(tralfamador);
+
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
     planets.forEach( function( planet ){
@@ -24,6 +31,8 @@ $(document).ready(function(){
       eval(planet.name).position.x = planet.x * 10
       eval(planet.name).position.y = planet.y * 10
       eval(planet.name).position.z = planet.z * 10
+
+      console.log( planet.name )
 
       domEvents.addEventListener(eval(planet.name), 'click', function(event){
         console.log( planet.name );
