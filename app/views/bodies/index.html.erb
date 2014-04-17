@@ -1,23 +1,12 @@
 
 <style>canvas { width: 100%; height: 100% }</style>
-<script>
-var planets = [];
 
 <% @bodies.each do |planet| %>
   <% if planet.current %>
-    var p = {
-      name: "<%= planet.name.gsub(/-/, '_').tr('(),','').to_s %>",
-      diameter: "<%= planet.diameter %>",
-      color: "<%= planet.color.to_s %>",
-      x: "<%= planet.x %>",
-      y: "<%= planet.y %>",
-      z: "<%= planet.z %>"
-    };
-    planets.push( p );
+    <li class='planet' data-name=<%= planet.name.gsub(/-/, '_').tr('(),','').to_s %> data-diameter=<%= planet.diameter %> data-color=<%= planet.color.to_s %> data-x=<%= planet.x %> data-y=<%= planet.y %> data-z=<%= planet.z %>></li>
   <% end %>
 <% end %>
 
-</script>
 <h4>What's Happening in Space?</h4>
 <% @bodies.each do |body| %>
   <div id="<%=body.name.gsub(/-/, '_').tr('(),','')%>_info" class="modal">

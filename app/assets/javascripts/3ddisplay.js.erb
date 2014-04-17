@@ -11,32 +11,31 @@ $(document).ready(function(){
 
     camera.lookAt( center )
 
-var tralfamador = new THREE.Mesh(
-        new THREE.SphereGeometry(1.5,15,15),
-        new THREE.MeshBasicMaterial( {
-                color: 0xffffff
-        }));
-scene.add(tralfamador);
+          var directionalLight = new THREE.DirectionalLight(0x999999);
+      directionalLight.position.set(1.1, 0, 0);
+      scene.add(directionalLight);
 
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
-    planets.forEach( function( planet ){
+    $("li").each( function(index, planet ){
 
-      window[planet.name] = new THREE.Mesh( 
-        new THREE.SphereGeometry(planet.diameter,15,15),
+      var planet = $(planet)
+
+      window[planet.data('name')] = new THREE.Mesh( 
+        new THREE.SphereGeometry(planet.data('diameter'),15,15),
         new THREE.MeshBasicMaterial( { 
-          color: parseInt('0x' + planet.color)
+          color: parseInt('0x' + planet.data('color'))
         }));
-      scene.add( window[planet.name] );
-      eval(planet.name).position.x = planet.x * 10
-      eval(planet.name).position.y = planet.y * 10
-      eval(planet.name).position.z = planet.z * 10
+      scene.add( window[planet.data('name')] );
+      eval(planet.data('name')).position.x = planet.data('x') * 10
+      eval(planet.data('name')).position.y = planet.data('y') * 10
+      eval(planet.data('name')).position.z = planet.data('z') * 10
 
-      console.log( planet.name )
+      console.log( eval(planet.data('name')) )
 
-      domEvents.addEventListener(eval(planet.name), 'click', function(event){
-        console.log( planet.name );
-        $( "#" + planet.name + "_info" ).modal();
+      domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
+        console.log( planet.data('name') );
+        $( "#" + planet.data('name') + "_info" ).modal();
       }, false);
 
     });
