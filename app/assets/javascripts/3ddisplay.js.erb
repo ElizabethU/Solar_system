@@ -50,6 +50,7 @@ $(document).ready(function(){
 var speed = .1
 var theta1 = 0
 var theta2 = 0
+var hemisphereSwitcher = 1
 
   $( document ).keydown(function(e) {
     if (e.keyCode < 37 || e.keyCode > 40) return true
@@ -58,9 +59,13 @@ var theta2 = 0
     if (e.keyCode === 38) {
       //alert( "Up!" );
       theta1 += speed
+      console.log(theta1)
+      console.log(Math.sin( theta1 ))
     } else if (e.keyCode === 40) {
       //alert( "Down!" );
       theta1 -= speed
+      console.log(theta1)
+      console.log(Math.sin( theta1 ))
     } else if (e.keyCode === 37) {
       //alert( "Left!" );
       theta2 -= speed
