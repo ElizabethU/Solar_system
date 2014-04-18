@@ -13,3 +13,7 @@
  */
 require jquery.ui.all
 require jquery.modal 
+
+li {
+  list-style-type: none;
+}
