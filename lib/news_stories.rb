@@ -1,6 +1,6 @@
 class NewNews
   def initialize
-    @bodies = Body.find_by(current: true)
+    @bodies = Body.all
   end
 
   def update
@@ -19,7 +19,7 @@ class NewNews
           BodyArticle.create(article_id: redundant_article.id, body_id: body.id)
           
         end
-        new_article = Article.create(title: article.title, url: article.url, summary: article.summary, date: article.date)
+        new_article = Article.create(title: article.title, url: article.url, summary: article.summary, date: article.published)
 
         BodyArticle.create(article_id: new_article.id, body_id: body.id)
       end
@@ -27,11 +27,11 @@ class NewNews
   end
 
   def already_article(title)
-    Article.where(title: title).count != nil
+    Article.find_by(title: title) != nil
   end
 
   def already_article_for_planet(title, planet)
     article = Article.find_by(title: title)
-    BodyArticle.find_by(article_id: article.id and body_id: planet.id).count != nil
+    BodyArticle.find_by(article_id: article.id, body_id: planet.id) != nil
   end
 end

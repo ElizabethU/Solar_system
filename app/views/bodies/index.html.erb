@@ -11,5 +11,9 @@
 <% @bodies.each do |body| %>
   <div id="<%=body.name.gsub(/-/, '_').tr('(),','')%>_info" class="modal">
   <p>This is <%= body.name.capitalize %>!</p>
+  <% body.articles.order('date DESC').take(5).each do |article| %>
+    <%= link_to(article.title, article.url) %><br>
+  <% end %>
+  <p></p>
   </div>
 <% end %>
