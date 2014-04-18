@@ -22,6 +22,6 @@ class NewNews
 
   def alread_article_for_planet(title, planet)
     article = Article.find_by(title: title)
-    BodyArticle
+    BodyArticle.find_by(article_id: article.id and body_id: planet.id).count > 0
   end
 end
