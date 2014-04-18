@@ -7,6 +7,7 @@ group :development do
   gem 'capistrano-rails'
 end
 
+gem 'pg'
 gem 'feedjira'
 gem 'httparty'
 gem 'jquery-ui-rails'

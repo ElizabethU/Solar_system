@@ -4,7 +4,7 @@ class CreateArticles < ActiveRecord::Migration
       t.text :title
       t.string :url
       t.text :summary
-      t.string :date
+      t.datetime :date
 
       t.timestamps
     end

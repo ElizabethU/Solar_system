@@ -22,5 +22,6 @@ class NewNews
 
   def alread_article_for_planet(title, planet)
     article = Article.find_by(title: title)
+    BodyArticle
   end
 end
