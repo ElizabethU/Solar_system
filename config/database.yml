@@ -25,6 +25,6 @@ production:
   database: solar-system-production
   pool: 5
   timeout: 5000
-  username: solar-system
-  password:
+  username: ubuntu
+  password: ENV['DBPASSWORD']
   host: localhost
