@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417203825) do
+ActiveRecord::Schema.define(version: 20140417235441) do
 
   create_table "articles", force: true do |t|
     t.text     "title"
     t.string   "url"
     t.text     "summary"
-    t.string   "date"
+    t.datetime "date",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20140417203825) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "current"
+  end
+
+  create_table "body_articles", force: true do |t|
+    t.integer  "body_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

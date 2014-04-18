@@ -1,6 +1,6 @@
 class NewNews
   def initialize
-    @bodies = Body.where(current: true)
+    @bodies = Body.find_by(current: true)
   end
 
   def update
@@ -18,5 +18,9 @@ class NewNews
 
   def already_article(title)
     Article.where(title: title).count > 0
+  end
+
+  def alread_article_for_planet(title, planet)
+    article = Article.find_by(title: title)
   end
 end
