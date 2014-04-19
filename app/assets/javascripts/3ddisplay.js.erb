@@ -50,6 +50,12 @@ $(document).ready(function(){
       // scene.add(ambientLight);
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
+
+      $('canvas').click(function(e){
+          console.log("Click!")
+          //$( ".modal" ).hide();
+        });
+
     $("li").each( function(index, planet ){
 
       var planet = $(planet)
@@ -68,7 +74,9 @@ $(document).ready(function(){
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
-        $( "#" + planet.data('name') + "_info" ).modal();
+        $(".modal").hide(0, function() {
+          $( "#" + planet.data('name') + "_info" ).show()
+        });
       }, false);
 
     });

@@ -11,13 +11,24 @@ ul li.planet {
 body {
   margin: 0;
   background-color: #000000;
+  color: #ffffff;
 }
 
 h4 {
   color: #ffffff;
 }
 
-.inner-modal {
-  height: 100px;
-  overflow-y: scroll;
+.modal {
+  height: 100%;
+  width: 25%;
+  position: absolute;
+  overflow: scroll;
+  display: none;
+}
+
+/*img + p*/
+
+.modal img {
+  float: left;
+  padding: 10px;
 }

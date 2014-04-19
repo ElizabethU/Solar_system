@@ -9,13 +9,15 @@
 </ul>
 <h4>What's Happening in Space?</h4>
 <% @bodies.each do |body| %>
-  <div id="<%=body.name.gsub(/-/, '_').tr('(),','')%>_info" class="modal">
-    <div id="inner-modal">
+  <div id='container'>
+    <div id="<%=body.name.gsub(/-/, '_').tr('(),','')%>_info" class="modal">
       <p>This is <%= body.name.capitalize %>!</p>
-      <% body.articles.order('date DESC').take(5).each do |article| %>
-        <%= article.summary.html_safe %><br>
-      <% end %>
-      <p></p>
+        <% body.articles.order('date DESC').take(5).each do |article| %>
+          <div class="article">
+            <%= article.summary.html_safe %><br>
+          </div>
+        <% end %>
+        <p></p>
     </div>
   </div>
 <% end %>
