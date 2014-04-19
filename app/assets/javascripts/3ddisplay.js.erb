@@ -75,11 +75,20 @@ $(document).ready(function(){
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
         $(".modal").hide(0, function() {
-          $( "#" + planet.data('name') + "_info" ).show()
+          $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
+            $('.inner-modal').html(data)
+            console.log(data)
+          })
+          $( "#info" ).show()
         });
       }, false);
 
     });
+
+    $('.close').click(function(e){
+          $('#info').hide()
+          $('.inner-modal').html('')
+        });
 
     function render() {
         requestAnimationFrame(render);

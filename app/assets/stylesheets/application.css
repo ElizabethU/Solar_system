@@ -17,8 +17,3 @@ ul li.planet {
   list-style-type: none;
   display: none;
 }
-
-.inner-modal {
-  height: 100px;
-  overflow-y: scroll;
-}

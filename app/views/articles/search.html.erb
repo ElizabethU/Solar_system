@@ -1,0 +1,8 @@
+<div class='articles'>
+<% @array.each do |article| %>
+  <article>
+    <%= article.image.html_safe if article.image %>
+    <p><%=article.summary.html_safe%></p>
+  </article>
+<% end %>
+</div>

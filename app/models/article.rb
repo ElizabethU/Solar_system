@@ -1,4 +1,5 @@
 class Article < ActiveRecord::Base
+  attr_accessor :image
   validates :title, uniqueness: true
   validates :title, presence: true
   validates :url, presence: true
