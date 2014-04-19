@@ -3,8 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/*/
 
 
-ul {
+ul li.planet {
   list-style-type: none;
+  display: none;
 }
 
 body {
