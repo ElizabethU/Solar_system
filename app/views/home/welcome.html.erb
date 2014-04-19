@@ -1,19 +1,5 @@
 
-    <style>canvas { width: 100%; height: 100% }</style>
-    <script>
-    var planets = [];
-
-    <% Bodies.each do |planet| %>
-      var p = {
-        name: <%= planet.name %>
-
-      };
-      planets.push( p );
-    <% end %>
-  </script>
-  <h4>What's Happening in Space?</h4>
-  <% Bodies.each do |body| %>
-    <div id="#{body.name} + '_info'" class="modal"> -->
-    <p>This is earth! You are here!</p>
+    <div id="about" class="modal">
+    <p>What's Happening in Space is an interactive website with up to date solar system telemetry designed to let you</p>
     </div>
   <% end %>

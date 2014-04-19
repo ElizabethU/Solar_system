@@ -10,11 +10,16 @@
  *
  *= require_self
  *=require jquery.ui.all
- *=require jquery.modal 
+ *=require jquery.modal
  *= require_tree .
  */
 
 ul li.planet {
   list-style-type: none;
   display: none;
+}
+
+.inner-modal {
+  height: 100px;
+  overflow-y: scroll;
 }
