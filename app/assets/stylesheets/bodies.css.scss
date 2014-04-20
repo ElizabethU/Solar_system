@@ -12,18 +12,23 @@ body {
   margin: 0;
   background-color: #000000;
   color: #ffffff;
+  font-family: "Courier New"
 }
 
-h4 {
-  color: #ffffff;
+a {
+  color: #4D57C9;
+  font-style: bold;
 }
 
-.modal {
+#info {
   height: 100%;
   width: 25%;
   position: absolute;
-  overflow-y: scroll;
   display: none;
+  overflow-y: scroll; 
+}
+
+.inner-modal {
 }
 
 /*img + p*/
@@ -31,4 +36,11 @@ h4 {
 .modal img {
   float: left;
   padding: 10px;
+}
+
+.close {
+  background-color: #4D57C9;
+  padding: 10px;
+  border-radius: 8px;
+  width: 50px;
 }

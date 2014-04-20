@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+    function capitalize(string)
+    {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -74,7 +79,9 @@ $(document).ready(function(){
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
-        $(".modal").hide(0, function() {
+
+        $("#info").hide(0, function() {
+          $('.heading').html("The Latest News On " + capitalize(planet.data('name')) )
           $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
             $('.inner-modal').html(data)
             console.log(data)
@@ -106,48 +113,28 @@ var hemisphereSwitcher = 1
     if (e.keyCode < 37 || e.keyCode > 40) return true
     var radius = 17
 
-    // Up key
     if (e.keyCode === 38) {
       //alert( "Up!" );
-      //if (theta1 > 3.0415 * 2) {
-      //  theta1 = -3.0415 * 2
-
-      
-      //}
       theta1 += speed
       console.log("Theta1: " + theta1)
       console.log("Sin Theta1: " + Math.sin( theta1 ))
       console.log("Cos Theta1: " + Math.cos( theta1 ))
     }
-    // Down key
     if (e.keyCode === 40) {
       theta1 -= speed
       //alert( "Down!" )
-      //if (theta1 < 0 ) {
-      //  theta1 = 3.0415 * 2
-      
-      //};
-      
       console.log("Theta1: " + theta1)
       console.log("Sin Theta1: " + Math.sin( theta1 ))
       console.log("Cos Theta1: " + Math.cos( theta1 ))
-
-
     }
-
-    // Left key
     if (e.keyCode === 37) {
       //alert( "Left!" );
       theta2 -= speed
     }
-
-    // Right key
     if (e.keyCode === 39) {
       //alert( "Right!" );
       theta2 += speed
     }; 
-
-    //b = radius * Math.cos(Math.asin( camera.position.y / radius))
     camera.position.x = radius * Math.sin( theta1 ) * Math.cos( theta2 )
     camera.position.z = radius * Math.sin( theta1 ) * Math.sin( theta2 )
     camera.position.y = radius * Math.cos( theta1 ) // z in mathland, y in d3
