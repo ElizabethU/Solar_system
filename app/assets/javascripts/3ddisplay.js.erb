@@ -61,7 +61,7 @@ $(document).ready(function(){
           //$( ".modal" ).hide();
         });
 
-    $("li").each( function(index, planet ){
+    $("li.planet").each( function(index, planet ){
 
       var planet = $(planet)
 
@@ -75,7 +75,7 @@ $(document).ready(function(){
       eval(planet.data('name')).position.y = planet.data('y') * 10
       eval(planet.data('name')).position.z = planet.data('z') * 10
 
-      console.log( eval(planet.data('name')) )
+      //console.log( eval(planet.data('name')) )
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );

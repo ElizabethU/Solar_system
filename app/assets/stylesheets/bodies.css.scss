@@ -8,6 +8,23 @@ ul li.planet {
   display: none;
 }
 
+ul.navbar {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+}
+
+ul.navbar li {
+  display: inline-block;
+  position: relative;
+  padding-left: 20px;
+  padding-right: 30px;
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
 body {
   margin: 0;
   background-color: #000000;
@@ -25,10 +42,19 @@ a {
   width: 25%;
   position: absolute;
   display: none;
-  overflow-y: scroll; 
+  overflow-y: scroll;
+  overflow-x: none;
+/*  opacity: 0.9;*/
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #555555;
+  /*background-color: #555555;*/
+
 }
 
 .inner-modal {
+  padding-left: 15px;
+  padding-right: 10px;
 }
 
 /*img + p*/
@@ -38,9 +64,14 @@ a {
   padding: 10px;
 }
 
+.heading {
+  padding-left: 15px;
+}
+
 .close {
   background-color: #4D57C9;
   padding: 10px;
+  margin-left: 15px;
   border-radius: 8px;
   width: 50px;
 }
