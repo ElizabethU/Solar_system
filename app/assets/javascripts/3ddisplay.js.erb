@@ -12,6 +12,7 @@ $(document).ready(function(){
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
+
     var center = new THREE.Vector3( 0, 0, 0 );
 
     var stars = THREEx.Planets.createStarfield()
@@ -53,6 +54,7 @@ $(document).ready(function(){
 
       // var ambientLight = new THREE.AmbientLight(0x333333);
       // scene.add(ambientLight);
+
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
 
@@ -80,7 +82,7 @@ $(document).ready(function(){
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
 
-        $("#info").hide(0, function() {
+        $(".modal").hide(0, function() {
           $('.heading').html("The Latest News On " + capitalize(planet.data('name')) )
           $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
             $('.inner-modal').html(data)
@@ -92,8 +94,13 @@ $(document).ready(function(){
 
     });
 
+    $('.navbar-instructions').click(function(e) {
+        $('.modal').hide()
+        $('#instructions').show()
+      })
+
     $('.close').click(function(e){
-          $('#info').hide()
+          $('.modal').hide()
           $('.inner-modal').html('')
         });
 
@@ -135,6 +142,7 @@ var hemisphereSwitcher = 1
       //alert( "Right!" );
       theta2 += speed
     }; 
+
     camera.position.x = radius * Math.sin( theta1 ) * Math.cos( theta2 )
     camera.position.z = radius * Math.sin( theta1 ) * Math.sin( theta2 )
     camera.position.y = radius * Math.cos( theta1 ) // z in mathland, y in d3
@@ -142,7 +150,6 @@ var hemisphereSwitcher = 1
     console.log("cameraX: " + camera.position.x);
     console.log("cameraY: " + camera.position.y);
     console.log("cameraZ: " + camera.position.z);
-
 
     camera.lookAt( center )
     console.log(camera.position)

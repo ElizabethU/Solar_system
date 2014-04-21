@@ -38,18 +38,21 @@ a {
 }
 
 #info {
+/*  opacity: 0.9;*/
+  /*background-color: #555555;*/
+
+}
+
+.modal {
   height: 100%;
   width: 25%;
   position: absolute;
   display: none;
   overflow-y: scroll;
   overflow-x: none;
-/*  opacity: 0.9;*/
   border-right-style: solid;
   border-right-width: 1px;
   border-right-color: #555555;
-  /*background-color: #555555;*/
-
 }
 
 .inner-modal {
