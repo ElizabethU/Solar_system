@@ -58,11 +58,6 @@ $(document).ready(function(){
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
 
-      $('canvas').click(function(e){
-          console.log("Click!")
-          //$( ".modal" ).hide();
-        });
-
     $("li.planet").each( function(index, planet ){
 
       var planet = $(planet)
@@ -97,6 +92,11 @@ $(document).ready(function(){
     $('.navbar-instructions').click(function(e) {
         $('.modal').hide()
         $('#instructions').show()
+      })
+
+    $('.navbar-dedication').click(function(e) {
+        $('.modal').hide()
+        $('#dedication').show()
       })
 
     $('.close').click(function(e){
