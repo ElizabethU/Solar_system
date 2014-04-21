@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418200147) do
+ActiveRecord::Schema.define(version: 20140421173746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20140418200147) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "current"
+    t.boolean  "rings"
+    t.string   "planet"
   end
 
   create_table "body_articles", force: true do |t|

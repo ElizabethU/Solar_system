@@ -18,11 +18,6 @@ $(document).ready(function(){
     var stars = THREEx.Planets.createStarfield()
     scene.add( stars )
 
-    var mesh    = THREEx.Planets.createEarth()
-    scene.add(mesh)
-
-    mesh.position.x = 10
-
     camera.position.x = 17
     camera.lookAt( center )
 
@@ -60,23 +55,42 @@ $(document).ready(function(){
 
     $("li.planet").each( function(index, planet ){
 
-      var planet = $(planet)
+      var planet = $(planet);
 
-      window[planet.data('name')] = new THREE.Mesh( 
-        new THREE.SphereGeometry(planet.data('diameter'),15,15),
-        new THREE.MeshPhongMaterial( { 
-          color: parseInt('0x' + planet.data('color'))
-        }));
+      if (planet.data('name') === 'sol') {
+        window[planet.data('name')] = THREEx.Planets.createSun()
+      } 
+      else if (planet.data('planet') === 'planet') {
+
+        window[planet.data('name')] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + '()')
+        if (planet.data('rings') === true) {
+          window[planet.data('name') + 'Ring' ] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + 'Ring()')
+        }
+
+      } else {
+        window[planet.data('name')] = new THREE.Mesh( 
+          new THREE.SphereGeometry(planet.data('diameter'),15,15),
+          new THREE.MeshPhongMaterial( { 
+            color: parseInt('0x' + planet.data('color'))
+          }));
+      };
+      console.log(window[planet.data('name')])
+      console.log('planet made!')
       scene.add( window[planet.data('name')] );
-      eval(planet.data('name')).position.x = planet.data('x') * 10
-      eval(planet.data('name')).position.y = planet.data('z') * 10
-      eval(planet.data('name')).position.z = planet.data('y') * 10
+      console.log(planet.data('name'))
+      eval(planet.data('name')).position.x = planet.data('x') * 8
+      eval(planet.data('name')).position.y = planet.data('z') * 8
+      eval(planet.data('name')).position.z = planet.data('y') * 8
 
+      console.log("planet positioned!")
       //console.log( eval(planet.data('name')) )
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
-
+        camera.position.x = eval(planet.data('name')).position.x + 1.3
+        camera.position.y = eval(planet.data('name')).position.y
+        camera.position.z = eval(planet.data('name')).position.z
+        camera.lookAt(eval(planet.data('name')).position)
         $(".modal").hide(0, function() {
           $('.heading').html("The Latest News On " + capitalize(planet.data('name')) )
           $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
