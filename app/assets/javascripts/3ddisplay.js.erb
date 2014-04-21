@@ -63,6 +63,7 @@ $(document).ready(function(){
       else if (planet.data('planet') === 'planet') {
 
         window[planet.data('name')] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + '()')
+
         if (planet.data('rings') === true) {
           window[planet.data('name') + 'Ring' ] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + 'Ring()');
         }
