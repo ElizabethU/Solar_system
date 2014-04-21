@@ -64,8 +64,7 @@ $(document).ready(function(){
 
         window[planet.data('name')] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + '()')
         if (planet.data('rings') === true) {
-          window[planet.data('name') + 'Ring' ] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + 'Ring()')
-          scene.add( window[planet.data('name') + 'Ring'] );
+          window[planet.data('name') + 'Ring' ] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + 'Ring()');
         }
 
       } else {
@@ -81,10 +80,7 @@ $(document).ready(function(){
       eval(planet.data('name')).position.z = planet.data('y') * 8
 
       if (planet.data('rings') === true) {
-        console.log("I am assigning, just wrong")
-        eval(planet.data('name') + 'Ring').position.x = planet.data('x') * 8
-        eval(planet.data('name') + 'Ring').position.y = planet.data('z') * 8
-        eval(planet.data('name') + 'Ring').position.z = planet.data('y') * 8
+        window[planet.data('name')].add( window[planet.data('name') + 'Ring'] )
       }
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){

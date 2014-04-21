@@ -2,7 +2,7 @@ var THREEx = THREEx || {}
 
 THREEx.Planets  = {}
 
-THREEx.Planets.baseURL  = 'https://capstone-planet-assets.s3-us-west-2.amazonaws.com/'
+THREEx.Planets.baseURL  = '/'
 
 THREE.ImageUtils.crossOrigin = "anonymous";
 
@@ -174,12 +174,12 @@ THREEx.Planets.createSaturnRing = function(){
   imageMap.addEventListener("load", function() {
     
     // create dataMap ImageData for earthcloudmap
-    var canvasMap = document.createElement('canvas')
-    canvasMap.width = imageMap.width
-    canvasMap.height= imageMap.height
-    var contextMap  = canvasMap.getContext('2d')
-    contextMap.drawImage(imageMap, 0, 0)
-    var dataMap = contextMap.getImageData(0, 0, canvasMap.width, canvasMap.height)
+    var canvasMap = document.createElement('canvas');
+    canvasMap.width = imageMap.width;
+    canvasMap.height= imageMap.height;
+    var contextMap  = canvasMap.getContext('2d');
+    contextMap.drawImage(imageMap, 0, 0);
+    var dataMap = contextMap.getImageData(0, 0, canvasMap.width, canvasMap.height);
 
     // load earthcloudmaptrans
     var imageTrans  = new Image();
