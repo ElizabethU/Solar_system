@@ -74,8 +74,8 @@ $(document).ready(function(){
         }));
       scene.add( window[planet.data('name')] );
       eval(planet.data('name')).position.x = planet.data('x') * 10
-      eval(planet.data('name')).position.y = planet.data('y') * 10
-      eval(planet.data('name')).position.z = planet.data('z') * 10
+      eval(planet.data('name')).position.y = planet.data('z') * 10
+      eval(planet.data('name')).position.z = planet.data('y') * 10
 
       //console.log( eval(planet.data('name')) )
 
@@ -112,7 +112,7 @@ $(document).ready(function(){
     render();
 
 var speed = .1
-var theta1 = 0
+var theta1 = 1.57
 var theta2 = 0
 var hemisphereSwitcher = 1
 
@@ -122,17 +122,21 @@ var hemisphereSwitcher = 1
 
     if (e.keyCode === 38) {
       //alert( "Up!" );
-      theta1 += speed
-      console.log("Theta1: " + theta1)
-      console.log("Sin Theta1: " + Math.sin( theta1 ))
-      console.log("Cos Theta1: " + Math.cos( theta1 ))
+      if (theta1 < 3.04){
+        theta1 += speed
+        console.log("Theta1: " + theta1)
+        console.log("Sin Theta1: " + Math.sin( theta1 ))
+        console.log("Cos Theta1: " + Math.cos( theta1 ))
+      }
     }
     if (e.keyCode === 40) {
-      theta1 -= speed
-      //alert( "Down!" )
-      console.log("Theta1: " + theta1)
-      console.log("Sin Theta1: " + Math.sin( theta1 ))
-      console.log("Cos Theta1: " + Math.cos( theta1 ))
+      if (theta1 > 0.1) {
+        theta1 -= speed
+        //alert( "Down!" )
+        console.log("Theta1: " + theta1)
+        console.log("Sin Theta1: " + Math.sin( theta1 ))
+        console.log("Cos Theta1: " + Math.cos( theta1 ))
+      }
     }
     if (e.keyCode === 37) {
       //alert( "Left!" );
