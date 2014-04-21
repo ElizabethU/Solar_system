@@ -85,7 +85,7 @@ $(document).ready(function(){
         $(".modal").hide(0, function() {
           $('.heading').html("The Latest News On " + capitalize(planet.data('name')) )
           $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
-            $('.inner-modal').html(data)
+            $('.news-modal').html(data)
             console.log(data)
           })
           $( "#info" ).show()
@@ -101,7 +101,7 @@ $(document).ready(function(){
 
     $('.close').click(function(e){
           $('.modal').hide()
-          $('.inner-modal').html('')
+          $('.news-modal').html('')
         });
 
     function render() {
