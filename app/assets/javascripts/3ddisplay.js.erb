@@ -23,32 +23,32 @@ $(document).ready(function(){
 
     //var rotation = Rotation.IDENTITY
 
-      var directionalLight = new THREE.DirectionalLight(0x999999);
-      directionalLight.position.set(0, 0, 1.1);
-      scene.add(directionalLight);
+      // var directionalLight = new THREE.DirectionalLight(0x999999);
+      // directionalLight.position.set(0, 0, 1.1);
+      // scene.add(directionalLight);
 
-      var directionalLight = new THREE.DirectionalLight(0x999999);
-      directionalLight.position.set(0, 0, -1.1);
-      scene.add(directionalLight);
+      // var directionalLight = new THREE.DirectionalLight(0x999999);
+      // directionalLight.position.set(0, 0, -1.1);
+      // scene.add(directionalLight);
 
-      var directionalLight = new THREE.DirectionalLight(0x999999);
-      directionalLight.position.set(0, 1.1, 0);
-      scene.add(directionalLight);
+      // var directionalLight = new THREE.DirectionalLight(0x999999);
+      // directionalLight.position.set(0, 1.1, 0);
+      // scene.add(directionalLight);
 
-      var directionalLight = new THREE.DirectionalLight(0x999999);
-      directionalLight.position.set(0, -1.1, 0);
-      scene.add(directionalLight);
+      // var directionalLight = new THREE.DirectionalLight(0x999999);
+      // directionalLight.position.set(0, -1.1, 0);
+      // scene.add(directionalLight);
 
-      var directionalLight = new THREE.DirectionalLight(0x999999);
-      directionalLight.position.set(1.1, 0, 0);
-      scene.add(directionalLight);
+      // var directionalLight = new THREE.DirectionalLight(0x999999);
+      // directionalLight.position.set(1.1, 0, 0);
+      // scene.add(directionalLight);
 
-      var directionalLight = new THREE.DirectionalLight(0x999999);
-      directionalLight.position.set(-1.1, 0, 0);
-      scene.add(directionalLight);
+      // var directionalLight = new THREE.DirectionalLight(0x999999);
+      // directionalLight.position.set(-1.1, 0, 0);
+      // scene.add(directionalLight);
 
-      // var ambientLight = new THREE.AmbientLight(0x333333);
-      // scene.add(ambientLight);
+      var ambientLight = new THREE.AmbientLight(0xffffff);
+      scene.add(ambientLight);
 
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
@@ -65,6 +65,7 @@ $(document).ready(function(){
         window[planet.data('name')] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + '()')
         if (planet.data('rings') === true) {
           window[planet.data('name') + 'Ring' ] = eval('THREEx.Planets.create' + capitalize(planet.data('name')) + 'Ring()')
+          scene.add( window[planet.data('name') + 'Ring'] );
         }
 
       } else {
@@ -74,16 +75,17 @@ $(document).ready(function(){
             color: parseInt('0x' + planet.data('color'))
           }));
       };
-      console.log(window[planet.data('name')])
-      console.log('planet made!')
       scene.add( window[planet.data('name')] );
-      console.log(planet.data('name'))
       eval(planet.data('name')).position.x = planet.data('x') * 8
       eval(planet.data('name')).position.y = planet.data('z') * 8
       eval(planet.data('name')).position.z = planet.data('y') * 8
 
-      console.log("planet positioned!")
-      //console.log( eval(planet.data('name')) )
+      if (planet.data('rings') === true) {
+        console.log("I am assigning, just wrong")
+        eval(planet.data('name') + 'Ring').position.x = planet.data('x') * 8
+        eval(planet.data('name') + 'Ring').position.y = planet.data('z') * 8
+        eval(planet.data('name') + 'Ring').position.z = planet.data('y') * 8
+      }
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
