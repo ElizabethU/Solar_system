@@ -89,10 +89,12 @@ $(document).ready(function(){
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
-        camera.position.x = eval(planet.data('name')).position.x + 1.3
-        camera.position.y = eval(planet.data('name')).position.y
-        camera.position.z = eval(planet.data('name')).position.z
-        camera.lookAt(eval(planet.data('name')).position)
+        if (planet.data('planet') === 'planet') {
+          camera.position.x = eval(planet.data('name')).position.x + 1.3
+          camera.position.y = eval(planet.data('name')).position.y
+          camera.position.z = eval(planet.data('name')).position.z
+          camera.lookAt(eval(planet.data('name')).position)
+        }
         $(".modal").hide(0, function() {
           $('.heading').html("The Latest News On " + capitalize(planet.data('name')) )
           $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
