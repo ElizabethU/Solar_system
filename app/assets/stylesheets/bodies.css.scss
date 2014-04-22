@@ -82,9 +82,13 @@ a {
   background-color: #6069D1;
   padding: 10px;
   margin-left: 15px;
-  border-radius: 8px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+/*  border-radius: 8px;*/
   width: 50px;
   position: fixed;
-  bottom: 1%;
-  left: 25%;
+  top: 9%;
+  left: 23.9%;
 }
