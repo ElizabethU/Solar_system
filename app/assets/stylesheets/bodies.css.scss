@@ -33,7 +33,7 @@ body {
 }
 
 a {
-  color: #4D57C9;
+  color: #6069D1;
   font-style: bold;
 }
 
@@ -48,7 +48,6 @@ a {
   width: 25%;
   position: absolute;
   display: none;
-  overflow-y: scroll;
   overflow-x: none;
   border-right-style: solid;
   border-right-width: 1px;
@@ -56,8 +55,10 @@ a {
 }
 
 .inner-modal {
+  overflow-y: scroll;
   padding-left: 15px;
   padding-right: 10px;
+  height: 90%;
 }
 
 /*img + p*/
@@ -78,9 +79,12 @@ a {
 }
 
 .close {
-  background-color: #4D57C9;
+  background-color: #6069D1;
   padding: 10px;
   margin-left: 15px;
   border-radius: 8px;
   width: 50px;
+  position: fixed;
+  bottom: 1%;
+  left: 25%;
 }
