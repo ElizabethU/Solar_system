@@ -17,3 +17,22 @@ ul li.planet {
   list-style-type: none;
   display: none;
 }
+
+.dropdown {
+  display: none;
+  position: absolute;
+  padding-left: -30px;
+  right: 0px;
+}
+
+ul.dropdown li {
+  display: block;
+  margin: 0;
+  padding: 5px;
+  font-size: 18px; /*Not working*/
+  vertical-align: middle; /*not working*/
+}
+
+ul.navbar li:hover ul {
+  display: block;
+}

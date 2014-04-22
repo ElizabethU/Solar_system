@@ -9,6 +9,13 @@
 <body>
 <ul class='navbar'>
   <li class="navbar-item"><h3>What's Happening in Space</h3></li>
+  <li class="navbar-planets"><h3>Planets</h3>
+    <ul class="dropdown">
+      <% Body.all.where(planet: 'planet').each do |planet| %>
+        <li class="planet-dropdown"><%=planet.name%></li>
+      <% end %>
+    </ul>
+  </li>
   <li class="navbar-instructions"><h3>Instructions</h3></li>
   <li class="navbar-dedication"><h3>Dedication</h3></li>
 </ul>
