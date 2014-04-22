@@ -75,7 +75,6 @@ $(document).ready(function(){
           $('.heading').html("The Latest News On " + capitalize(planet.data('name')) )
           $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
             $('.news-modal').html(data)
-            console.log(data)
           })
           $( "#info" ).show()
         });
@@ -92,6 +91,25 @@ $(document).ready(function(){
         $('.modal').hide()
         $('#dedication').show()
       })
+
+    $("li.planet-dropdown").each( function(index, planet_li ){
+      var planet = $(planet_li);
+      console.log(planet.data('name'))
+      $(planet_li).click(function(e) {
+        console.log(planet_li)
+        $('.modal').hide(0, function() {
+          camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 2 +.1
+          camera.position.y = eval(planet.data('name')).position.y
+          camera.position.z = eval(planet.data('name')).position.z
+          camera.lookAt(eval(planet.data('name')).position)
+          $('.heading').html("The Latest News On " + capitalize(planet.data('name')) )
+          $.get("/articles?body_name=" + planet.data('name') ).then(function(data) {
+             $('.news-modal').html(data)
+           })
+          $('#info').show()
+        });
+      });
+    });
 
     $('.close').click(function(e){
           $('.modal').hide()

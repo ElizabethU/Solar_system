@@ -3,7 +3,6 @@ var THREEx = THREEx || {}
 THREEx.Planets  = {}
 
 THREEx.Planets.baseURL  = "/"
-console.log(THREEx.Planets.baseURL)
 THREE.ImageUtils.crossOrigin = "anonymous";
 
 // from http://planetpixelemporium.com/

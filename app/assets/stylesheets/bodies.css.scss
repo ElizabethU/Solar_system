@@ -52,6 +52,7 @@ a {
   border-right-style: solid;
   border-right-width: 1px;
   border-right-color: #555555;
+  background-color:rgba(0, 0, 0, 0.5)
 }
 
 .inner-modal {
@@ -64,6 +65,7 @@ a {
 /*img + p*/
 
 .modal img {
+
   float: left;
   padding: 10px;
 }
@@ -79,6 +81,7 @@ a {
 }
 
 .close {
+  margin: 0;
   background-color: #6069D1;
   padding: 10px;
   margin-left: 15px;
