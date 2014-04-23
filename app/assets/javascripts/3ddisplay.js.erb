@@ -73,6 +73,10 @@ $(document).ready(function(){
         }
         $(".modal").hide(0, function() {
           $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
+          $('.distance').html((Math.sqrt(Math.pow((planet.data('x') - (earth.position.x / 10)), 2) + Math.pow((planet.data('z') - (earth.position.y / 10)), 2) + Math.pow((planet.data('y') - (earth.position.z / 10)), 2)) * 92.9558073).toFixed(2).toString() + " million miles from Earth")
+          console.log(Math.pow((planet.data('x') - earth.position.x), 2))
+          console.log(Math.pow((planet.data('y') - earth.position.z), 2))
+          console.log(Math.pow((planet.data('z') - earth.position.y), 2))   
           $.get("/articles?body_name=" + planet.data('nicename').replace("_", "+") ).then(function(data) {
             $('.news-modal').html(data)
           })
@@ -94,9 +98,7 @@ $(document).ready(function(){
 
     $("li.planet-dropdown").each( function(index, planet_li ){
       var planet = $(planet_li);
-      console.log(planet.data('name'))
       $(planet_li).click(function(e) {
-        console.log(planet_li)
         $('.modal').hide(0, function() {
           if (planet.data('planet') === 'planet') {
             camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
