@@ -14,12 +14,16 @@ $(document).ready(function(){
       }
       $('.modal').hide(0, function() {
         $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
-        $('.distance').html((Math.sqrt(Math.pow((planet.data('x') - (earth.position.x / 10)), 2) + Math.pow((planet.data('z') - (earth.position.y / 10)), 2) + Math.pow((planet.data('y') - (earth.position.z / 10)), 2)) * 92.9558073).toFixed(2).toString() + " million miles from Earth")
+        distance(planet)
         $.get("/articles?body_name=" + planet.data('nicename').replace('_', '+') ).then(function(data) {
           $('.news-modal').html(data)
          })
         $('#info').show()
       });
+    }
+
+    function distance(planet) {
+      $('.distance').html((Math.sqrt(Math.pow((planet.data('x') - (earth.position.x / 10)), 2) + Math.pow((planet.data('z') - (earth.position.y / 10)), 2) + Math.pow((planet.data('y') - (earth.position.z / 10)), 2)) * 92.9558073).toFixed(2).toString() + " million miles from Earth")
     }
 
     var scene = new THREE.Scene();
@@ -77,9 +81,7 @@ $(document).ready(function(){
       eval(planet.data('name')).position.z = planet.data('y') * 10
 
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
-        /////////////////////
         sidebar(planet)
-        /////////////////////
       });
     });
 
@@ -97,9 +99,7 @@ $(document).ready(function(){
       var planet = $(planet_li);
 
       $(planet_li).click(function(e) {
-      /////////////////
         sidebar(planet)
-        /////////////////////
       });
     });
 
@@ -111,14 +111,6 @@ $(document).ready(function(){
     function render() {
         requestAnimationFrame(render);
         renderer.render(scene, camera);
-        // $("li.planet").each( function(index, planet){
-        //   console.log(planet.data('planet'))
-          // if (planet.data) {
-          //   if (planet.data('planet') === 'planet') {
-          //     window[planet.data('name')].rotation.y += 0.01
-          //   } 
-          // }
-        // });
         sol.rotation.y += 0.01
         mercury.rotation.y += 0.01
         venus.rotation.y += 0.01  
@@ -147,18 +139,12 @@ var hemisphereSwitcher = 1
       //alert( "Up!" );
       if (theta1 < 3.04){
         theta1 += speed
-        console.log("Theta1: " + theta1)
-        console.log("Sin Theta1: " + Math.sin( theta1 ))
-        console.log("Cos Theta1: " + Math.cos( theta1 ))
       }
     }
     if (e.keyCode === 40) {
       if (theta1 > 0.1) {
         theta1 -= speed
         //alert( "Down!" )
-        console.log("Theta1: " + theta1)
-        console.log("Sin Theta1: " + Math.sin( theta1 ))
-        console.log("Cos Theta1: " + Math.cos( theta1 ))
       }
     }
     if (e.keyCode === 37) {
