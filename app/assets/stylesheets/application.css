@@ -36,3 +36,22 @@ ul.dropdown li {
 ul.navbar li:hover ul {
   display: block;
 }
+
+.dropdown-missions {
+  display: none;
+  position: absolute;
+  padding-left: 0px;
+  right: 0px;
+}
+
+ul.dropdown-missions li {
+  display: block;
+  margin: 0;
+  padding: 5px;
+  font-size: 18px; /*Not working*/
+  vertical-align: middle; /*not working*/
+}
+
+ul.navbar li:hover ul {
+  display: block;
+}
