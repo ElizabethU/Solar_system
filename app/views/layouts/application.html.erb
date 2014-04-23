@@ -13,14 +13,14 @@
   <li class="navbar-planets"><h3>Planets</h3>
     <ul class="dropdown">
       <% Body.all.where(planet: 'planet').each do |planet| %>
-        <li class="planet-dropdown" data-name=<%=planet.name%> data-nicename=<%=planet.nice_name%> data-planet=<%=planet.planet%>><%=planet.nice_name%></li>
+        <li class="planet-dropdown" data-name=<%=planet.name%> data-nicename=<%=planet.nice_name%> data-planet=<%=planet.planet%> data-x=<%= planet.x %> data-y=<%= planet.y %> data-z=<%= planet.z %>><%=planet.nice_name%></li>
       <% end %>
     </ul>
   </li>
   <li class="navbar-missions"><h3>Current Missions</h3>
     <ul class="dropdown-missions">
       <% Body.all.where(planet: 'spacecraft', current: true).each do |satellite| %>
-        <li class="planet-dropdown" data-name=<%=satellite.name%> data-nicename=<%=satellite.nice_name%> data-planet=<%=satellite.planet%>><%=satellite.nice_name.gsub(/_/, ' ')%></li>
+        <li class="planet-dropdown" data-name=<%=satellite.name%> data-nicename=<%=satellite.nice_name%> data-planet=<%=satellite.planet%> data-x=<%= satellite.x %> data-y=<%= satellite.y %> data-z=<%= satellite.z %>><%=satellite.nice_name.gsub(/_/, ' ')%></li>
       <% end %>
     </ul>
   </li>
