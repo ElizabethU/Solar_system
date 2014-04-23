@@ -72,8 +72,8 @@ $(document).ready(function(){
           camera.lookAt(eval(planet.data('name')).position)
         }
         $(".modal").hide(0, function() {
-          $('.heading').html("The Latest News On " + planet.data('nicename') )
-          $.get("/articles?body_name=" + planet.data('nicename').replace(" ", "+") ).then(function(data) {
+          $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
+          $.get("/articles?body_name=" + planet.data('nicename').replace("_", "+") ).then(function(data) {
             $('.news-modal').html(data)
           })
           $( "#info" ).show()
@@ -104,8 +104,8 @@ $(document).ready(function(){
             camera.position.z = eval(planet.data('name')).position.z
             camera.lookAt(eval(planet.data('name')).position)
           }
-          $('.heading').html("The Latest News On " + planet.data('nicename') )
-          $.get("/articles?body_name=" + planet.data('nicename').replace( / /g, '+' ) ).then(function(data) {
+          $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
+          $.get("/articles?body_name=" + planet.data('nicename').replace('_', '+') ).then(function(data) {
              $('.news-modal').html(data)
            })
           $('#info').show()
