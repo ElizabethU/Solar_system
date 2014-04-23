@@ -31,10 +31,12 @@ ul.dropdown li {
   padding: 5px;
   font-size: 18px; /*Not working*/
   vertical-align: middle; /*not working*/
+  cursor: default;
 }
 
 ul.navbar li:hover ul {
   display: block;
+  cursor: default;
 }
 
 .dropdown-missions {
@@ -50,8 +52,13 @@ ul.dropdown-missions li {
   padding: 5px;
   font-size: 18px; /*Not working*/
   vertical-align: middle; /*not working*/
+  cursor: default;
 }
 
 ul.navbar li:hover ul {
   display: block;
+}
+
+.earth {
+  display: none;
 }

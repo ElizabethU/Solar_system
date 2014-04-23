@@ -5,6 +5,28 @@ $(document).ready(function(){
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    function sidebar(planet) {
+      if (planet.data('planet') === 'planet') {
+        camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
+        camera.position.y = eval(planet.data('name')).position.y
+        camera.position.z = eval(planet.data('name')).position.z
+        camera.lookAt(eval(planet.data('name')).position)
+      }
+      $('.modal').hide(0, function() {
+        $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
+        $.get("/articles?body_name=" + planet.data('nicename')).then(function(data) {
+          $('.news-modal').html(data)
+         })
+        $('#info').show()
+      });
+    }
+
+    function distance(planet) {
+      var earthCoord = $('.earth')
+      console.log(planet)
+      $('.distance').html((Math.sqrt(Math.pow((planet.data('x') - earthCoord.data('x')), 2) + Math.pow((planet.data('z') - earthCoord.data('x')), 2) + Math.pow((planet.data('y') - earthCoord.data('z')), 2)) * 92.9558073).toFixed(2).toString() + " million miles from Earth")
+    }
+
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
@@ -59,31 +81,9 @@ $(document).ready(function(){
       eval(planet.data('name')).position.y = planet.data('z') * 10
       eval(planet.data('name')).position.z = planet.data('y') * 10
 
-      if (planet.data('rings') === true) {
-        
-      }
-
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
-        console.log( planet.data('name') );
-        if (planet.data('planet') === 'planet') {
-          camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
-          camera.position.y = eval(planet.data('name')).position.y
-          camera.position.z = eval(planet.data('name')).position.z
-          camera.lookAt(eval(planet.data('name')).position)
-        }
-        $(".modal").hide(0, function() {
-          $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
-          $('.distance').html((Math.sqrt(Math.pow((planet.data('x') - (earth.position.x / 10)), 2) + Math.pow((planet.data('z') - (earth.position.y / 10)), 2) + Math.pow((planet.data('y') - (earth.position.z / 10)), 2)) * 92.9558073).toFixed(2).toString() + " million miles from Earth")
-          console.log(Math.pow((planet.data('x') - earth.position.x), 2))
-          console.log(Math.pow((planet.data('y') - earth.position.z), 2))
-          console.log(Math.pow((planet.data('z') - earth.position.y), 2))   
-          $.get("/articles?body_name=" + planet.data('nicename').replace("_", "+") ).then(function(data) {
-            $('.news-modal').html(data)
-          })
-          $( "#info" ).show()
-        });
-      }, false);
-
+        sidebar(planet)
+      });
     });
 
     $('.navbar-instructions').click(function(e) {
@@ -98,20 +98,9 @@ $(document).ready(function(){
 
     $("li.planet-dropdown").each( function(index, planet_li ){
       var planet = $(planet_li);
+
       $(planet_li).click(function(e) {
-        $('.modal').hide(0, function() {
-          if (planet.data('planet') === 'planet') {
-            camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
-            camera.position.y = eval(planet.data('name')).position.y
-            camera.position.z = eval(planet.data('name')).position.z
-            camera.lookAt(eval(planet.data('name')).position)
-          }
-          $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
-          $.get("/articles?body_name=" + planet.data('nicename').replace('_', '+') ).then(function(data) {
-             $('.news-modal').html(data)
-           })
-          $('#info').show()
-        });
+        sidebar(planet)
       });
     });
 
@@ -123,14 +112,6 @@ $(document).ready(function(){
     function render() {
         requestAnimationFrame(render);
         renderer.render(scene, camera);
-        // $("li.planet").each( function(index, planet){
-        //   console.log(planet.data('planet'))
-          // if (planet.data) {
-          //   if (planet.data('planet') === 'planet') {
-          //     window[planet.data('name')].rotation.y += 0.01
-          //   } 
-          // }
-        // });
         sol.rotation.y += 0.01
         mercury.rotation.y += 0.01
         venus.rotation.y += 0.01  
@@ -159,18 +140,12 @@ var hemisphereSwitcher = 1
       //alert( "Up!" );
       if (theta1 < 3.04){
         theta1 += speed
-        console.log("Theta1: " + theta1)
-        console.log("Sin Theta1: " + Math.sin( theta1 ))
-        console.log("Cos Theta1: " + Math.cos( theta1 ))
       }
     }
     if (e.keyCode === 40) {
       if (theta1 > 0.1) {
         theta1 -= speed
         //alert( "Down!" )
-        console.log("Theta1: " + theta1)
-        console.log("Sin Theta1: " + Math.sin( theta1 ))
-        console.log("Cos Theta1: " + Math.cos( theta1 ))
       }
     }
     if (e.keyCode === 37) {
@@ -186,13 +161,10 @@ var hemisphereSwitcher = 1
     camera.position.z = radius * Math.sin( theta1 ) * Math.sin( theta2 )
     camera.position.y = radius * Math.cos( theta1 ) // z in mathland, y in d3
     
-    console.log("cameraX: " + camera.position.x);
-    console.log("cameraY: " + camera.position.y);
-    console.log("cameraZ: " + camera.position.z);
-
     camera.lookAt( center )
-    console.log(camera.position)
 
     return false
   });
+
+  
 });

@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class='earth' data-x=<%=Body.find_by(name: 'earth').x%> data-y=<%=Body.find_by(name: 'earth').z%> data-z=<%=Body.find_by(name: 'earth').y%>></div>
 <ul class='navbar'>
   <li class="navbar-item"><h3>What's Happening in Space</h3></li>
   <li class="navbar-planets"><h3>Planets</h3>
