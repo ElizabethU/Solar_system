@@ -3,7 +3,7 @@
 <ul>
 <% @bodies.each do |planet| %>
   <% if planet.current %>
-    <li class='planet' data-name=<%= planet.name.gsub(/-/, '_').tr('(),','').to_s %> data-diameter=<%= planet.diameter %> data-color=<%= planet.color.to_s %> data-x=<%= planet.x %> data-y=<%= planet.y %> data-z=<%= planet.z %> data-planet=<%= planet.planet %> data-rings=<%=planet.rings%>></li>
+    <li class='planet' data-name=<%= planet.name.gsub(/-/, '_').tr('(),','').to_s %> data-diameter=<%= planet.diameter %> data-color=<%= planet.color.to_s %> data-x=<%= planet.x %> data-y=<%= planet.y %> data-z=<%= planet.z %> data-planet=<%= planet.planet %> data-rings=<%=planet.rings%> data-nicename=<%=planet.nice_name%>></li>
   <% end %>
 <% end %>
 </ul>
