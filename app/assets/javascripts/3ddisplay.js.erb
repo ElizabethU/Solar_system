@@ -97,6 +97,16 @@ $(document).ready(function(){
         $('#dedication').show()
       })
 
+    $('.navbar-play').click(function(e) {
+        $('li.planet').each( function(index, planet) {
+            var planet = $(planet);
+            eval(planet.data('name')).position.x = 5
+            eval(planet.data('name')).position.y = 5
+            eval(planet.data('name')).position.z = 5
+          })
+      })
+
+
     $("li.planet-dropdown").each( function(index, planet_li ){
       var planet = $(planet_li);
 
