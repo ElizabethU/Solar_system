@@ -14,8 +14,7 @@ $(document).ready(function(){
       }
       $('.modal').hide(0, function() {
         $('.heading').html("The Latest News On " + planet.data('nicename').replace("_", " ") )
-        distance(planet)
-        $.get("/articles?body_name=" + planet.data('nicename').replace('_', '+') ).then(function(data) {
+        $.get("/articles?body_name=" + planet.data('nicename')).then(function(data) {
           $('.news-modal').html(data)
          })
         $('#info').show()
@@ -23,7 +22,9 @@ $(document).ready(function(){
     }
 
     function distance(planet) {
-      $('.distance').html((Math.sqrt(Math.pow((planet.data('x') - (earth.position.x / 10)), 2) + Math.pow((planet.data('z') - (earth.position.y / 10)), 2) + Math.pow((planet.data('y') - (earth.position.z / 10)), 2)) * 92.9558073).toFixed(2).toString() + " million miles from Earth")
+      var earthCoord = $('.earth')
+      console.log(planet)
+      $('.distance').html((Math.sqrt(Math.pow((planet.data('x') - earthCoord.data('x')), 2) + Math.pow((planet.data('z') - earthCoord.data('x')), 2) + Math.pow((planet.data('y') - earthCoord.data('z')), 2)) * 92.9558073).toFixed(2).toString() + " million miles from Earth")
     }
 
     var scene = new THREE.Scene();

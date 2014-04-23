@@ -55,3 +55,7 @@ ul.dropdown-missions li {
 ul.navbar li:hover ul {
   display: block;
 }
+
+.earth {
+  display: none;
+}
