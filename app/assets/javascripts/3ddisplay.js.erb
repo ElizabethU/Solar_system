@@ -6,7 +6,7 @@ $(document).ready(function(){
     }
 
     var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    var camera = new THREE.PerspectiveCamera( 25, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -18,7 +18,7 @@ $(document).ready(function(){
     var stars = THREEx.Planets.createStarfield()
     scene.add( stars )
 
-    camera.position.x = 15
+    camera.position.x = 50
     camera.lookAt( center )
 
       var ambientLight = new THREE.AmbientLight(0xffffff);
@@ -66,7 +66,7 @@ $(document).ready(function(){
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         console.log( planet.data('name') );
         if (planet.data('planet') === 'planet') {
-          camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 2 +.1
+          camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
           camera.position.y = eval(planet.data('name')).position.y
           camera.position.z = eval(planet.data('name')).position.z
           camera.lookAt(eval(planet.data('name')).position)
@@ -98,12 +98,12 @@ $(document).ready(function(){
       $(planet_li).click(function(e) {
         console.log(planet_li)
         $('.modal').hide(0, function() {
-          camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 2 +.1
+          camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
           camera.position.y = eval(planet.data('name')).position.y
           camera.position.z = eval(planet.data('name')).position.z
           camera.lookAt(eval(planet.data('name')).position)
-          $('.heading').html("The Latest News On " + capitalize(planet.data('nice_name')) )
-          $.get("/articles?body_name=" + planet.data('nice_name').replace( / /g, '+' ) ).then(function(data) {
+          $('.heading').html("The Latest News On " + planet.data('nicename') )
+          $.get("/articles?body_name=" + planet.data('nicename').replace( / /g, '+' ) ).then(function(data) {
              $('.news-modal').html(data)
            })
           $('#info').show()
@@ -131,7 +131,7 @@ $(document).ready(function(){
         mercury.rotation.y += 0.01
         venus.rotation.y += 0.01  
         earth.rotation.y += 0.01
-        clouds.rotation.y += 0.01
+        clouds.rotation.y += 0.005
         mars.rotation.y += 0.01
         jupiter.rotation.y += 0.01
         saturn.rotation.y += 0.01
@@ -142,14 +142,14 @@ $(document).ready(function(){
 
     render();
 
-var speed = .1
+var speed = .05
 var theta1 = 1.57
 var theta2 = 0
 var hemisphereSwitcher = 1
 
   $( document ).keydown(function(e) {
     if (e.keyCode < 37 || e.keyCode > 40) return true
-    var radius = 15
+    var radius = 50
 
     if (e.keyCode === 38) {
       //alert( "Up!" );
