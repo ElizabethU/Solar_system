@@ -98,10 +98,12 @@ $(document).ready(function(){
       $(planet_li).click(function(e) {
         console.log(planet_li)
         $('.modal').hide(0, function() {
-          camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
-          camera.position.y = eval(planet.data('name')).position.y
-          camera.position.z = eval(planet.data('name')).position.z
-          camera.lookAt(eval(planet.data('name')).position)
+          if (planet.data('planet') === 'planet') {
+            camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
+            camera.position.y = eval(planet.data('name')).position.y
+            camera.position.z = eval(planet.data('name')).position.z
+            camera.lookAt(eval(planet.data('name')).position)
+          }
           $('.heading').html("The Latest News On " + planet.data('nicename') )
           $.get("/articles?body_name=" + planet.data('nicename').replace( / /g, '+' ) ).then(function(data) {
              $('.news-modal').html(data)
