@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     function sidebar(planet) {
       if (planet.data('planet') === 'planet') {
-        camera.position.x = eval(planet.data('name')).position.x + eval(planet.data('name')).geometry.radius * 5 +.1
+        camera.position.x = eval(planet.data('name')).position.x - eval(planet.data('name')).geometry.radius * 5 -.1
         camera.position.y = eval(planet.data('name')).position.y
         camera.position.z = eval(planet.data('name')).position.z
         camera.lookAt(eval(planet.data('name')).position)
@@ -44,8 +44,18 @@ $(document).ready(function(){
     camera.position.x = 50
     camera.lookAt( center )
 
-      var ambientLight = new THREE.AmbientLight(0xffffff);
-      scene.add(ambientLight);
+    var ambientLight = new THREE.AmbientLight(0xffffff);
+    scene.add(ambientLight);
+
+  // light.castShadow  = true
+  // light.shadowCameraNear  = 0.01
+  // light.shadowCameraFar = 15
+  // light.shadowCameraFov = 45
+
+  // light.shadowCameraLeft  = -1
+  // light.shadowCameraRight =  1
+  // light.shadowCameraTop =  1
+  // light.shadowCameraBottom= -1
 
     // ThreeX click event library
     var domEvents   = new THREEx.DomEvents(camera, renderer.domElement)
@@ -74,9 +84,12 @@ $(document).ready(function(){
         window[planet.data('name')] = new THREE.Mesh( 
           new THREE.SphereGeometry(0.1,15,15),
           new THREE.MeshPhongMaterial( { 
-            color: parseInt('0x' + planet.data('color'))
+            color: '0xffffff'
           }));
       };
+
+      window[planet.data('name')].receiveShadow  = true
+      window[planet.data('name')].castShadow   = true
       scene.add( window[planet.data('name')] );
       eval(planet.data('name')).position.x = planet.data('x') * 10
       eval(planet.data('name')).position.y = planet.data('z') * 10
