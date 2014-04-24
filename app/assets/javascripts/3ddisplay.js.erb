@@ -91,7 +91,7 @@ $(document).ready(function(){
       domEvents.addEventListener(eval(planet.data('name')), 'click', function(event){
         sidebar(planet)
       });
-    });
+    }) 
 
     $('.navbar-instructions').click(function(e) {
         $('.modal').hide()
@@ -103,9 +103,15 @@ $(document).ready(function(){
         $('#dedication').show()
       })
 
+//Button name does not change. Why?
     $('.navbar-play').click(function(e) {
         animating = !animating
         day = 1
+        if ($('.navbar-play').html() === '<h3>Play</h3>') {
+          $('.navbar-play').html('<h3>Stop</h3>')
+        } else if ($('.navbar-play').html() === '<h3>Stop</h3>') {
+          $('.navbar-play').html('<h3>Play</h3>')
+        }
       })
 
     var animation = function(day) {
@@ -135,9 +141,6 @@ $(document).ready(function(){
     function render() {
         requestAnimationFrame(render);
         renderer.render(scene, camera);
-        //console.log(slow)
-        //if (slow % 3 === 0) {
-        //} 
         if (day >= 365) {
           animating = false
           day = 1
@@ -147,7 +150,7 @@ $(document).ready(function(){
           console.log(day)
           console.log(animating)
           day += 1
-        //  slow += 1
+          console.log($('.navbar-play').html())
         }
         sol.rotation.y += 0.01
         mercury.rotation.y += 0.01
@@ -203,6 +206,8 @@ var hemisphereSwitcher = 1
     return false
   });
 
+
+// This is awful and takes too long to load. I want it to load last, but can't figure out how
   $.get("/bodies/hash").then(function(data) {
     console.log(data)
     awfulHash = data
