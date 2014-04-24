@@ -1,5 +1,15 @@
 $(document).ready(function(){
 
+  var day = 1
+  var awfulHash;
+
+  $.get("/bodies/hash").then(function(data) {
+    console.log(data)
+    awfulHash = data
+  })
+
+  var animating = false
+
     function capitalize(string)
     {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -98,14 +108,17 @@ $(document).ready(function(){
       })
 
     $('.navbar-play').click(function(e) {
-        $('li.planet').each( function(index, planet) {
-            var planet = $(planet);
-            eval(planet.data('name')).position.x = 5
-            eval(planet.data('name')).position.y = 5
-            eval(planet.data('name')).position.z = 5
-          })
+        animating = !animating
       })
 
+    var animation = function(day) {
+      $('li.planet').each( function(index, planet) {
+        var planet = $(planet);
+        eval(planet.data('name')).position.x = awfulHash[planet.data('name')]['2013'][day.toString]['x']
+        eval(planet.data('name')).position.y = awfulHash[planet.data('name')]['2013'][day.toString]['y']
+        eval(planet.data('name')).position.z = awfulHash[planet.data('name')]['2013'][day.toString]['z']
+      })
+    }
 
     $("li.planet-dropdown").each( function(index, planet_li ){
       var planet = $(planet_li);
@@ -123,6 +136,10 @@ $(document).ready(function(){
     function render() {
         requestAnimationFrame(render);
         renderer.render(scene, camera);
+        day += 1
+        if (animating === true) {
+          animation(day)
+        }
         sol.rotation.y += 0.01
         mercury.rotation.y += 0.01
         venus.rotation.y += 0.01  
