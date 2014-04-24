@@ -1,12 +1,8 @@
 $(document).ready(function(){
 
-  var day = 0
+  var slow = 1
+  var day = 1
   var awfulHash;
-
-  $.get("/bodies/hash").then(function(data) {
-    console.log(data)
-    awfulHash = data
-  })
 
   var animating = false
 
@@ -109,6 +105,7 @@ $(document).ready(function(){
 
     $('.navbar-play').click(function(e) {
         animating = !animating
+        day = 1
       })
 
     var animation = function(day) {
@@ -138,10 +135,19 @@ $(document).ready(function(){
     function render() {
         requestAnimationFrame(render);
         renderer.render(scene, camera);
-        day += 1
-        day = day % 365 + 1
+        //console.log(slow)
+        //if (slow % 3 === 0) {
+        //} 
+        if (day >= 365) {
+          animating = false
+          day = 1
+        }
         if (animating === true) {
           animation(day)
+          console.log(day)
+          console.log(animating)
+          day += 1
+        //  slow += 1
         }
         sol.rotation.y += 0.01
         mercury.rotation.y += 0.01
@@ -197,5 +203,9 @@ var hemisphereSwitcher = 1
     return false
   });
 
+  $.get("/bodies/hash").then(function(data) {
+    console.log(data)
+    awfulHash = data
+  })
   
 });
