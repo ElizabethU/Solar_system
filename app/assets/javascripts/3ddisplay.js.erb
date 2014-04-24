@@ -208,9 +208,22 @@ var hemisphereSwitcher = 1
 
 
 // This is awful and takes too long to load. I want it to load last, but can't figure out how
-  $.get("/bodies/hash").then(function(data) {
-    console.log(data)
-    awfulHash = data
-  })
-  
+
+  function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        dostuff()
+        break;  
+      }
+    }
+  }
+
+  function dostuff() {
+    $.get("/bodies/hash").then(function(data) {
+      console.log(data)
+      awfulHash = data
+    })
+  }
+    sleep(5);
 });

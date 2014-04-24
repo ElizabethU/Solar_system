@@ -1,4 +1,7 @@
 class BodiesController < ApplicationController
+
+  caches_action :hash
+
   def index
     @bodies = Body.all
   end

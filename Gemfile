@@ -14,6 +14,8 @@ gem 'jquery-ui-rails'
 gem 'jquery-modal-rails'
 gem 'therubyracer', platforms: :ruby
 
+gem 'actionpack-action_caching'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
