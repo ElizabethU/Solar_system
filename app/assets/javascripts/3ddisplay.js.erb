@@ -103,13 +103,21 @@ $(document).ready(function(){
         $('#dedication').show()
       })
 
-//Button name does not change. Why?
     $('.navbar-play').click(function(e) {
-        animating = !animating
         day = 1
         if ($('.navbar-play').html() === '<h3>Play</h3>') {
           $('.navbar-play').html('<h3>Stop</h3>')
+          animating = !animating
         } else if ($('.navbar-play').html() === '<h3>Stop</h3>') {
+          $('.navbar-play').html('<h3>Play</h3>')
+          animating = !animating
+        } else if ($('.navbar-play').html() === '<h3>Reset</h3>') {
+          $("li.planet").each( function(index, planet ){
+            var planet = $(planet); 
+            eval(planet.data('name')).position.x = planet.data('x') * 10
+            eval(planet.data('name')).position.y = planet.data('z') * 10
+            eval(planet.data('name')).position.z = planet.data('y') * 10
+          })
           $('.navbar-play').html('<h3>Play</h3>')
         }
       })
@@ -144,6 +152,7 @@ $(document).ready(function(){
         if (day >= 365) {
           animating = false
           day = 1
+          $('.navbar-play').html('<h3>Reset</h3>')
         }
         if (animating === true) {
           animation(day)
@@ -206,24 +215,11 @@ var hemisphereSwitcher = 1
     return false
   });
 
-
-// This is awful and takes too long to load. I want it to load last, but can't figure out how
-
-  function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        dostuff()
-        break;  
-      }
-    }
-  }
-
   function dostuff() {
     $.get("/bodies/hash").then(function(data) {
       console.log(data)
       awfulHash = data
     })
   }
-    sleep(5);
+  dostuff()
 });
