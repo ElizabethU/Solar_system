@@ -18,6 +18,10 @@ ul li.planet {
   display: none;
 }
 
+h3 {
+  margin: 0;
+}
+
 .dropdown {
   display: none;
   position: absolute;
@@ -61,4 +65,15 @@ ul.navbar li:hover ul {
 
 .earth {
   display: none;
+}
+
+.navbar-play {
+  margin: 0;
+  background-color: #6069D1;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  width: 50px;
+/*  top: 9%;
+  left: 25%;*/
 }
