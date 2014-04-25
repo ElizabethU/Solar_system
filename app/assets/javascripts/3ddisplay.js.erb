@@ -139,6 +139,7 @@ $(document).ready(function(){
       $('li.planet').each( function(index, planet) {
         var planet = $(planet);
         if (awfulHash[planet.data('name')] && awfulHash[planet.data('name')][2013]) {
+          console.log(awfulHash[planet.data('name')][2013][day]['x'])
         eval(planet.data('name')).position.x = awfulHash[planet.data('name')][2013][day]['x'] * 10
         eval(planet.data('name')).position.y = awfulHash[planet.data('name')][2013][day]['z'] * 10
         eval(planet.data('name')).position.z = awfulHash[planet.data('name')][2013][day]['y'] * 10
@@ -229,7 +230,7 @@ var hemisphereSwitcher = 1
   });
 
   function dostuff() {
-    $.get("/bodies/hash").then(function(data) {
+    $.getJSON("/bodies/hash").then(function(data) {
       console.log(data)
       awfulHash = data
     })
