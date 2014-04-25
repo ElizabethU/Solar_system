@@ -16,8 +16,8 @@ ul.navbar {
 ul.navbar li {
   display: inline-block;
   position: relative;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
   margin: 0;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 a {
-  color: #6069D1;
+  color: #7DADFF;
   font-style: bold;
 }
 
@@ -82,7 +82,7 @@ a {
 
 .close {
   margin: 0;
-  background-color: #6069D1;
+  background-color: #7DADFF;
   padding: 10px;
   -moz-border-radius-bottomright: 10px;
   -webkit-border-bottom-right-radius: 10px;
@@ -92,6 +92,7 @@ a {
   position: fixed;
   top: 9%;
   left: 25%;
+  font-style: bold;
 }
 
 .distance {
