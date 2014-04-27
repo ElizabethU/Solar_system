@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_USER_AGENT'].include?('Safari') && !request.env['HTTP_USER_AGENT'].include?('Chrome')
   end
 
+  def browser
+    request.env['HTTP_USER_AGENT']
+  end
+
   helper_method :on_a_phone?
   helper_method :safari?
+  helper_method :browser?
 end
