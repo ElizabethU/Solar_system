@@ -28,6 +28,9 @@
   <li class="navbar-dedication"><h3>Dedication</h3></li>
   <li class="navbar-play"><h3>Play</h3></li>
 </ul>
+<% if on_a_phone? %>
+  <p>It turns out space is full of tons of Javascript. For best viewing, you should view this from a computer, not a mobile device and use Chrome or Firefox.</p>
+<% end %>
 <%= yield %>
 
 </body>
