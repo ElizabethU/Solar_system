@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def safari?
-    request.env['HTTP_USER_AGENT'].include?('Safari') && !request.env['HTTP_USER_AGENT'].include?('Chrome')
+    browser.include?('Safari') && !request.env['HTTP_USER_AGENT'].include?('Chrome')
   end
 
   def browser
@@ -17,5 +17,5 @@ class ApplicationController < ActionController::Base
 
   helper_method :on_a_phone?
   helper_method :safari?
-  helper_method :browser?
+  helper_method :browser
 end

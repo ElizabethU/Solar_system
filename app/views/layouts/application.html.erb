@@ -28,11 +28,8 @@
   <li class="navbar-dedication"><h3>Dedication</h3></li>
   <li class="navbar-play"><h3>Play</h3></li>
 </ul>
-<%= on_a_phone? %>
-<%= safari? %>
-<%= browser? %>
 <% if on_a_phone? || safari? %>
-  <p><h2>It turns out space is full of tons of Javascript 3D visualizations. To use this site properly, you should view this from a computer, not a mobile device and use Chrome or Firefox.</h2></p>
+  <p><h2>This website uses some pretty heavy duty 3D visualization libraries, and as a result, is not supported by mobile devices, Safari, or (heavens help you) Internet Explorer.</h2></p>
 <% end %>
 <%= yield %>
 
